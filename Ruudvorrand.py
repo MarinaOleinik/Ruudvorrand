@@ -2,8 +2,7 @@ from tkinter import *
 from math import *
 import matplotlib.pyplot as plt
 import numpy as np
-flag=True
-text=""
+
 def lahenda():    
     if (a.get()!="" and b.get()!="" and c.get()!=""):
         a_=int(a.get())
@@ -35,7 +34,6 @@ def lahenda():
             c.configure(bg="red")
     return flag,D,t
 def graafik():
-    global flag,text
     flag,D,t=lahenda()
     if flag==True:
         a_=int(a.get())
