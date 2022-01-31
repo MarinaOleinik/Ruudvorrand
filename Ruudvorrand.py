@@ -1,19 +1,19 @@
 from tkinter import *
 from math import *
 import matplotlib.pyplot as plt #Y=....
-import numpy as np #[a,b]
-global D,t
+import numpy as np #x =[min,max] 
+global D,t,graf
 D=-1
 t="Нет решений!"
+graf=False
 def lahenda(): 
-    global D,t
+    global D,t,graf
     if (a.get()!="" and b.get()!="" and c.get()!=""):
         if (float(a.get())==0 and float(b.get())==0 and float(c.get())==0):
             vastus.configure(text=f"Тут не можеть быть 0")
             a.configure(bg="red")
             b.configure(bg="red")
             c.configure(bg="red")
-            graf=False
         elif float(a.get())==0 and float(b.get())!=0 and float(c.get())!=0:
             vastus.configure(text=f"Тут не можеть быть 0")
             a.configure(bg="red")
@@ -63,7 +63,7 @@ def graafik():
         x1 = np.arange(x0-10, x0+10, 0.5)#min max step [min,max]
         y1=a_*x1*x1+b_*x1+c_
         fig = plt.figure()
-        plt.plot(x0, y0, x1, y1,'r-d')
+        plt.plot(x1, y1,'r-d')
         plt.title('Квадратное уравнение')
         plt.ylabel('y')
         plt.xlabel('x')
@@ -112,11 +112,22 @@ def kala():
     plt.xlabel('x')
     plt.grid(True)
     plt.show()
+def vihmavari(): pass
+def konn(): pass
+def figura():
+    global var
+    valik=var.get()
+    if valik==1:
+        kala()
+    elif valik==2:
+        vihmavari()
+    else:
+        konn()
 
 aken=Tk()
 aken.geometry("650x260")
 aken.title("Квадратные уравнения")
-f1=Frame(aken,width=650,height=200)
+f1=Frame(aken,width=650,height=260)
 f1.pack(side=TOP)
 f2=Frame(aken,width=650,height=200)
 f2.pack(side=BOTTOM)
@@ -143,11 +154,11 @@ btn_g=Button(f1,text="График", font="Calibri 26",bg="green",command=graafi
 btn_g.pack(side=LEFT)
 
 btn_veel=Button(f2,text="Увеличить окно", font="Calibri 26",bg="green",command=veel)
-btn_veel.pack(side = TOP)
+btn_veel.pack()
 var=IntVar()
-r1=Radiobutton(f2,text="Кит",variable=var,var=1, font="Calibri 26")#command=kala
-r2=Radiobutton(f2,text="Очки",variable=var,var=2, font="Calibri 26")
-r3=Radiobutton(f2,text="Лягуха",variable=var,var=3, font="Calibri 26")
+r1=Radiobutton(f2,text="Кит",variable=var,value=1, font="Calibri 26",command=figura)#command=kala
+r2=Radiobutton(f2,text="Очки",variable=var,value=2, font="Calibri 26",command=figura)
+r3=Radiobutton(f2,text="Лягуха",variable=var,value=3, font="Calibri 26",command=figura)
 r1.pack()
 r2.pack()
 r3.pack()
